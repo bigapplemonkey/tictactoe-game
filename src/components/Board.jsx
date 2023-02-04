@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Square from './Square';
 
 const Board = ({ squares, handleSquareClick }) => {
