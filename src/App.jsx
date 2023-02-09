@@ -5,6 +5,7 @@ import History from './components/History';
 import { calculateWinner } from './winner';
 import backgroundBottom from '/public/backgroundBottom.svg';
 import backgroundTop from '/public/backgroundTop.svg';
+import { motion } from 'framer-motion';
 
 const NEW_GAME = [{ squares: Array(9).fill(null), isXNext: false }];
 
@@ -60,7 +61,12 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <motion.div
+      className="app"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.9 }}
+    >
       <h1>
         TIC <span className="text-stroke">TAC</span> TOE
       </h1>
@@ -71,13 +77,15 @@ function App() {
         handleSquareClick={handleSquareClick}
         winningSquares={winningSquares}
       />
-      <button
+      <motion.button
         type="button"
         onClick={onNewGameStart}
         className={`btn-reset ${winner ? 'active' : ''}`}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
         START NEW GAME
-      </button>
+      </motion.button>
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
       <img
         src={backgroundBottom}
@@ -85,7 +93,7 @@ function App() {
         alt="SVG background image"
       />
       <img src={backgroundTop} className="top" alt="SVG background image" />
-    </div>
+    </motion.div>
   );
 }
 export default App;

@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const Square = ({ value, onClick, isWinningSquare }) => {
   const winningClassName = isWinningSquare ? 'winning' : '';
 
@@ -7,7 +9,14 @@ const Square = ({ value, onClick, isWinningSquare }) => {
       className={`square ${winningClassName}`}
       onClick={onClick}
     >
-      {value}
+      <motion.span
+        key={value}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: 'easeIn', duration: 0.3 }}
+      >
+        {value}
+      </motion.span>
     </button>
   );
 };
