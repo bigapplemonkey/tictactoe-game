@@ -8,28 +8,22 @@ const StatusMessage = ({ winner, gamingBoard }) => {
     if (winner) {
       return (
         <>
-          Winner is{' '}
-          <span className={winner === 'X' ? 'text-green' : 'text-orange'}>
-            {winner}
-          </span>
+          Winner is <span className="text-white">{winner}</span>
         </>
       );
     }
     if (!winner && noMovesLeft) {
       return (
         <>
-          <span className="text-orange">O</span> and{' '}
-          <span className="text-green">X</span> tied
+          <span className="text-white">O</span> and{' '}
+          <span className="text-white">X</span> tied
         </>
       );
     }
     if (!winner && !noMovesLeft) {
       return (
         <>
-          Next player is{' '}
-          <span className={isXNext ? 'text-green' : 'text-orange'}>
-            {nextPlayer}
-          </span>
+          Next player is <span className="text-white">{nextPlayer}</span>
         </>
       );
     }

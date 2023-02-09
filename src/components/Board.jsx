@@ -1,17 +1,27 @@
 import Square from './Square';
+import StatusMessage from './StatusMessage';
 
-const Board = ({ squares, handleSquareClick }) => {
+const Board = ({
+  winner,
+  gamingBoard,
+  squares,
+  handleSquareClick,
+  winningSquares,
+}) => {
   const renderSquare = position => {
+    const isWinningSquare = winningSquares.includes(position);
+
     return (
       <Square
         value={squares[position]}
         onClick={() => handleSquareClick(position)}
+        isWinningSquare={isWinningSquare}
       />
     );
   };
-
   return (
     <div className="board">
+      <StatusMessage winner={winner} gamingBoard={gamingBoard} />
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
@@ -30,5 +40,4 @@ const Board = ({ squares, handleSquareClick }) => {
     </div>
   );
 };
-
 export default Board;

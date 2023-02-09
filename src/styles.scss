@@ -1,19 +1,44 @@
 $green: #12e177;
+$offGreen: #dffa55;
+
 $orange: #ffc72a;
-$blue: #4c43d4;
+$main: #d6fc15;
+$offMain: #dffa55;
+$white: #ffffff;
+$offWhite: #fcffe9;
+$black: #000000;
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: $blue;
-  color: #fff;
+  font-family: 'area-extended', sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  background-color: $main;
+  color: $black;
   padding: 0;
   margin: 0;
 }
 
+img {
+  position: fixed;
+  z-index: -1;
+  &.bottom {
+    left: 0;
+    bottom: 0;
+  }
+  &.top {
+    top: 0;
+    right: 0;
+  }
+}
+
 button {
+  font-family: 'area-extended', sans-serif;
+  font-weight: 900;
+  font-style: normal;
   background: none;
   border: none;
   outline: none;
+  letter-spacing: 0.3px;
   &:hover {
     cursor: pointer;
   }
@@ -24,23 +49,49 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 60px;
+  h1 {
+    font-size: 60px;
+    letter-spacing: -1px;
+    margin-bottom: 50px;
+  }
 }
 
-.text-green {
-  color: $green;
+.text-stroke {
+  color: $white;
+  -webkit-text-stroke: 1px $black;
 }
 
-.text-orange {
-  color: $orange;
+.text-white {
+  color: $white;
 }
 
 .history-wrapper {
-  width: 300px;
+  width: 280px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: #000000;
+  border-radius: 25px;
+  margin-top: 25px;
+  transition: all 0.2s;
+  background-color: $offWhite;
+  box-shadow: 0px 0px 0px 1px #000000;
+  overflow: hidden;
+  position: relative;
+  top: -475px;
+  left: 370px;
+
+  h2 {
+    margin: 0;
+    background-color: $offMain;
+    font-size: 15px;
+    letter-spacing: 1px;
+    padding: 14px;
+  }
+
   .history {
     display: inline-block;
-    padding: 0;
+    padding: 8px 0 24px 0;
     margin: 0;
     li {
       list-style: none;
@@ -51,16 +102,16 @@ button {
         display: inline-block;
         height: 5px;
         width: 5px;
-        background-color: $green;
+        background-color: $black;
         margin-right: 4px;
         margin-bottom: 1px;
       }
 
       .btn-move {
-        color: #fff;
-        &.active {
-          font-weight: bold;
-          color: $green;
+        color: $black;
+        font-size: 15px;
+        &.activee {
+          color: $offGreen;
         }
       }
     }
@@ -68,23 +119,24 @@ button {
 }
 
 .status-message {
-  margin-bottom: 30px;
-  font-size: 1.2rem;
-  font-weight: lighter;
-  span {
-    font-weight: normal;
-  }
+  color: $main;
+  margin-bottom: 20px;
+  font-size: 15px;
+  font-weight: 900;
+  font-style: normal;
+  text-align: center;
+  letter-spacing: 0.8px;
 }
 
 .btn-reset {
-  font-size: 0.8rem;
-  color: #fff;
-  border-radius: 15px;
+  font-size: 15px;
+  color: $black;
+  border-radius: 13px;
   padding: 12px 18px;
-  margin-top: 25px;
+  margin-top: 35px;
   transition: all 0.2s;
-  background-color: $blue;
-  box-shadow: 0px 0px 0px 1px $orange;
+  background-color: $offWhite;
+  box-shadow: 0px 0px 0px 1px $black;
   &.active {
     background-color: $orange;
     box-shadow: none;
@@ -92,25 +144,29 @@ button {
 }
 
 .board {
+  background-color: $black;
+  padding: 10px 60px 60px 55px;
+  border-radius: 55px;
   .board-row {
     display: flex;
     flex-direction: row;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid $main;
     &:last-child {
       border-bottom: none;
     }
     .square {
+      color: $white;
       width: 80px;
       height: 80px;
-      border-right: 2px solid #fff;
-      font-size: 2.5rem;
+      border-right: 2px solid $main;
+      font-size: 50px;
       padding: 0;
       overflow: hidden;
       transition: all 0.2s;
       &:last-child {
         border-right: none;
       }
-      &.winning {
+      &.winningg {
         animation: scaleText 1.4s infinite;
         @keyframes scaleText {
           0% {

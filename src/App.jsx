@@ -1,19 +1,20 @@
 import './styles.scss';
 import { useState } from 'react';
 import Board from './components/Board';
-import StatusMessage from './components/StatusMessage';
 import History from './components/History';
 import { calculateWinner } from './winner';
+import backgroundBottom from '/public/backgroundBottom.svg';
+import backgroundTop from '/public/backgroundTop.svg';
+
+const NEW_GAME = [{ squares: Array(9).fill(null), isXNext: false }];
 
 function App() {
-  const [history, setHistory] = useState([
-    { squares: Array(9).fill(null), isXNext: false },
-  ]);
+  const [history, setHistory] = useState(NEW_GAME);
   const [currentMove, setCurrentMove] = useState(0);
 
   const gamingBoard = history[currentMove];
 
-  const winner = calculateWinner(gamingBoard.squares);
+  const { winner, winningSquares } = calculateWinner(gamingBoard.squares);
 
   const handleSquareClick = clickedPosition => {
     if (gamingBoard.squares[clickedPosition] || winner) {
@@ -53,16 +54,37 @@ function App() {
     setCurrentMove(move);
   };
 
+  const onNewGameStart = () => {
+    setHistory(NEW_GAME);
+    setCurrentMove(0);
+  };
+
   return (
     <div className="app">
-      <StatusMessage winner={winner} gamingBoard={gamingBoard} />
+      <h1>
+        TIC <span className="text-stroke">TAC</span> TOE
+      </h1>
       <Board
+        winner={winner}
+        gamingBoard={gamingBoard}
         squares={gamingBoard.squares}
         handleSquareClick={handleSquareClick}
+        winningSquares={winningSquares}
       />
-
-      <h2>Current game history</h2>
+      <button
+        type="button"
+        onClick={onNewGameStart}
+        className={`btn-reset ${winner ? 'active' : ''}`}
+      >
+        START NEW GAME
+      </button>
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
+      <img
+        src={backgroundBottom}
+        className="bottom"
+        alt="SVG background image"
+      />
+      <img src={backgroundTop} className="top" alt="SVG background image" />
     </div>
   );
 }
